@@ -7,6 +7,7 @@
         <groupId>com.yas</groupId>
         <artifactId>automation-ui</artifactId>
         <version>${revision}</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>automation-base</artifactId>
@@ -53,6 +54,14 @@
             <artifactId>cucumber-spring</artifactId>
             <version>${cucumber-spring.version}</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 
