@@ -32,6 +32,7 @@
         <module>tax</module>
         <module>webhook</module>
         <module>sampledata</module>
+        <module>automation-ui</module>
     </modules>
 
     <properties>
@@ -143,6 +144,32 @@
                 <artifactId>testcontainers-keycloak</artifactId>
                 <version>${testcontainers-keycloak.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.seleniumhq.selenium</groupId>
+                <artifactId>selenium-java</artifactId>
+                <version>4.14.0</version>
+            </dependency>
+            <!-- WebDriver Manager to automatically download WebDriver binaries -->
+            <dependency>
+                <groupId>io.github.bonigarcia</groupId>
+                <artifactId>webdrivermanager</artifactId>
+                <version>5.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-java</artifactId>
+                <version>7.18.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>7.10.2</version>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-testng</artifactId>
+                <version>7.18.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
