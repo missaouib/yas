@@ -1,36 +1,34 @@
 package com.yas.automation.ui.pages;
 
-import org.openqa.selenium.WebDriver;
+import com.yas.automation.ui.hook.WebDriverFactory;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import static com.yas.automation.ui.ultil.WebElementUtil.getWebElementBy;
+
 @Component
 public class LoginPage {
-    @FindBy(how = How.ID, using = "username")
-    public WebElement txtUserName;
 
-    @FindBy(how = How.ID, using = "password")
-    public WebElement txtPassword;
-
-    @FindBy(how = How.CLASS_NAME, using = "submit")
-    public WebElement loginBtn;
+    @Autowired
+    private final WebDriverFactory webDriverFactory;
 
     public void login(String username, String password) {
-        txtUserName.sendKeys(username);
-        txtPassword.sendKeys(password);
+        WebElement usernameEle = getWebElementBy(webDriverFactory.getChromeDriver(), How.ID, "username");
+        usernameEle.sendKeys(username);
+
+        WebElement passwordEle = getWebElementBy(webDriverFactory.getChromeDriver(), How.ID, "password");
+        passwordEle.sendKeys(password);
     }
 
     @Autowired
-    public LoginPage(WebDriver webDriver) {
-        PageFactory.initElements(webDriver, this);
+    public LoginPage(WebDriverFactory webDriverFactory) {
+        this.webDriverFactory = webDriverFactory;
     }
 
     public void clickLogin() {
-
+        WebElement loginBtn = getWebElementBy(webDriverFactory.getChromeDriver(), How.CLASS_NAME, "submit");
         loginBtn.click();
     }
 }

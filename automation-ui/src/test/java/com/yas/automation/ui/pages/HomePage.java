@@ -1,27 +1,27 @@
 package com.yas.automation.ui.pages;
 
-
-import org.openqa.selenium.WebDriver;
+import com.yas.automation.ui.hook.WebDriverFactory;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import static com.yas.automation.ui.ultil.WebElementUtil.getWebElementBy;
 
 @Component
 public class HomePage {
 
-    @FindBy(how = How.LINK_TEXT, using = "Login")
-    public WebElement loginLink;
+    @Autowired
+    private final WebDriverFactory webDriverFactory;
 
     @Autowired
-    public HomePage(WebDriver webDriver) {
-        PageFactory.initElements(webDriver, this);
+    public HomePage(WebDriverFactory webDriverFactory) {
+        this.webDriverFactory = webDriverFactory;
     }
 
-    public  void clickLogin() {
-        loginLink.click();
+    public void clickLogin() {
+        WebElement loginBtn = getWebElementBy(webDriverFactory.getChromeDriver(), How.LINK_TEXT, "Login");
+        loginBtn.click();
     }
 
 }

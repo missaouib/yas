@@ -1,5 +1,6 @@
 package com.yas.automation.ui.steps;
 
+import com.yas.automation.ui.hook.WebDriverFactory;
 import com.yas.automation.ui.pages.HomePage;
 import com.yas.automation.ui.pages.LoginPage;
 import io.cucumber.java.en.Given;
@@ -7,7 +8,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,22 +25,22 @@ public class LoginSteps {
 
     private final LoginPage loginPage;
 
-    private final WebDriver webDriver;
+    private final WebDriverFactory webDriverFactory;
 
     @Value("${test.cucumber.homeUrl}")
     private String homePageUrl;
 
     @Autowired
-    public LoginSteps(HomePage homePage, LoginPage loginPage, WebDriver webDriver) {
+    public LoginSteps(HomePage homePage, LoginPage loginPage, WebDriverFactory webDriverFactory) {
         this.homePage = homePage;
         this.loginPage = loginPage;
-        this.webDriver = webDriver;
+        this.webDriverFactory = webDriverFactory;
     }
 
     @Given("I am on the home page")
     public void i_am_on_the_home_page() {
         // Set up WebDriver
-        webDriver.navigate().to(homePageUrl); // Replace with your actual home page URL
+        webDriverFactory.getChromeDriver().navigate().to(homePageUrl); // Replace with your actual home page URL
     }
 
     @When("I click on the login link")
@@ -51,7 +51,7 @@ public class LoginSteps {
     @Then("I should be redirected to the login page")
     public void i_should_be_redirected_to_the_login_page() {
         // Verify that the current URL is the login page
-        String currentUrl = webDriver.getCurrentUrl();
+        String currentUrl = webDriverFactory.getChromeDriver().getCurrentUrl();
         assertTrue(currentUrl.contains("/login"));
     }
 
@@ -70,7 +70,7 @@ public class LoginSteps {
     @Then("I should be redirected to the dashboard")
     public void i_should_be_redirected_to_the_dashboard() {
 
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.of(10, ChronoUnit.SECONDS)); // 10 seconds wait
+        WebDriverWait wait = new WebDriverWait(webDriverFactory.getChromeDriver(), Duration.of(10, ChronoUnit.SECONDS)); // 10 seconds wait
         WebElement userDropdown = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-dropdown")));
         //WebElement userDropdown = webDriver.findElement(By.id("user-dropdown"));
         String dropdownText = userDropdown.getText();
@@ -88,7 +88,7 @@ public class LoginSteps {
 
     @Then("I should see an error message")
     public void i_should_see_an_error_message() {
-        WebDriverWait wait = new WebDriverWait(webDriver, Duration.of(10, ChronoUnit.SECONDS)); // 10 seconds wait
+        WebDriverWait wait = new WebDriverWait(webDriverFactory.getChromeDriver(), Duration.of(10, ChronoUnit.SECONDS)); // 10 seconds wait
         WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".alert.alert-error .message-text")));
 
         // Assert the text content of the error message
