@@ -1,5 +1,6 @@
 package com.yas.automation.ui.steps;
 
+import com.yas.automation.ui.configuration.StorefrontConfiguration;
 import com.yas.automation.ui.hook.WebDriverFactory;
 import com.yas.automation.ui.pages.HomePage;
 import com.yas.automation.ui.pages.LoginPage;
@@ -12,7 +13,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -22,25 +22,21 @@ import static org.junit.Assert.assertTrue;
 public class LoginSteps {
 
     private final HomePage homePage;
-
     private final LoginPage loginPage;
-
     private final WebDriverFactory webDriverFactory;
-
-    @Value("${test.cucumber.homeUrl}")
-    private String homePageUrl;
+    private final StorefrontConfiguration storefrontConf;
 
     @Autowired
-    public LoginSteps(HomePage homePage, LoginPage loginPage, WebDriverFactory webDriverFactory) {
+    public LoginSteps(HomePage homePage, LoginPage loginPage, WebDriverFactory webDriverFactory, StorefrontConfiguration storefrontConf) {
         this.homePage = homePage;
         this.loginPage = loginPage;
+        this.storefrontConf = storefrontConf;
         this.webDriverFactory = webDriverFactory;
     }
 
     @Given("I am on the home page")
     public void i_am_on_the_home_page() {
-        // Set up WebDriver
-        webDriverFactory.getChromeDriver().navigate().to(homePageUrl); // Replace with your actual home page URL
+        webDriverFactory.getChromeDriver().navigate().to(storefrontConf.url());
     }
 
     @When("I click on the login link")
@@ -57,9 +53,7 @@ public class LoginSteps {
 
     @When("I enter valid credentials")
     public void i_enter_valid_credentials() {
-        String adminUsername = "admin";
-        String adminPassword = "password";
-        loginPage.login(adminUsername, adminPassword);
+        loginPage.login(storefrontConf.username(), storefrontConf.password());
     }
 
     @When("I click on the login button")
