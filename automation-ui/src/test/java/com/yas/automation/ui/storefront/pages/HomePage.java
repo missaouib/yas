@@ -1,4 +1,4 @@
-package com.yas.automation.ui.pages;
+package com.yas.automation.ui.storefront.pages;
 
 import com.yas.automation.ui.hook.WebDriverFactory;
 import org.openqa.selenium.WebElement;

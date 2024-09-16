@@ -1,9 +1,9 @@
-package com.yas.automation.ui.steps;
+package com.yas.automation.ui.storefront.steps;
 
 import com.yas.automation.ui.configuration.StorefrontConfiguration;
 import com.yas.automation.ui.hook.WebDriverFactory;
-import com.yas.automation.ui.pages.HomePage;
-import com.yas.automation.ui.pages.LoginPage;
+import com.yas.automation.ui.storefront.pages.HomePage;
+import com.yas.automation.ui.storefront.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
