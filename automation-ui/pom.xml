@@ -6,7 +6,6 @@
 		<groupId>com.yas</groupId>
 		<artifactId>yas</artifactId>
 		<version>${revision}</version>
-		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>automation-ui</artifactId>
 	<version>${revision}</version>
@@ -15,7 +14,9 @@
 	<description>YAS automation-ui test</description>
 	<modules>
 		<module>storefront</module>
-	</modules>
+		<module>backoffice</module>
+        <module>automation-base</module>
+    </modules>
 	<properties>
 		<sonar.organization>nashtech-garage</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
