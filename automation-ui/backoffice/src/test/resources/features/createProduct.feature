@@ -6,6 +6,5 @@ Feature: Create Product
     Then I should be in product list page
     When I click to create product button
     Then I should be in create product page
-    Given I fill necessary data for product
-    When I click save button
+    Given I fill necessary data for product and submit
     Then I should be in product list page

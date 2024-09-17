@@ -4,6 +4,9 @@ import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * Abstract base class for web forms, providing common form functionality.
+ */
 @Getter
 public abstract class BaseForm {
 

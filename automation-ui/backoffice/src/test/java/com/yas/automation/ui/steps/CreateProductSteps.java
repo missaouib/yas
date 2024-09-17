@@ -1,5 +1,6 @@
 package com.yas.automation.ui.steps;
 
+import com.yas.automation.ui.form.ProductForm;
 import com.yas.automation.ui.hook.WebDriverFactory;
 import com.yas.automation.ui.pages.HomePage;
 import com.yas.automation.ui.pages.ProductPage;
@@ -8,8 +9,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import lombok.AllArgsConstructor;
-
-import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 
@@ -48,14 +47,17 @@ public class CreateProductSteps {
         assertTrue(currentUrl.contains("/catalog/products/create"));
     }
 
-    @Given("I fill necessary data for product")
+    @Given("I fill necessary data for product and submit")
     public void i_should_fill_necessary_data_for_product() {
-        productPage.fillProductData();
-    }
+        ProductForm productForm = new ProductForm(webDriverFactory.getChromeDriver());
 
-    @When("I click save button")
-    public void i_should_click_save_button() {
-        // Implement functionality for clicking the save button
+        // create product data
+        productPage.fillGeneralProductData(productForm);
+        productPage.uploadProductImg(productForm);
+
+        // submit form
+        productPage.scrollTo(productForm.getSubmitBtn());
+        productForm.submitForm();
     }
 
 }

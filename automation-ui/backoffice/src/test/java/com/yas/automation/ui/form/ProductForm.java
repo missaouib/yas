@@ -19,14 +19,35 @@ public class ProductForm extends BaseForm {
     @FindBy(how = How.ID, using = "sku")
     private WebElement sku;
 
+    @FindBy(how = How.ID, using = "gtin")
+    private WebElement gtin;
+
     @FindBy(how = How.ID, using = "select-option-brandId")
     private WebElement brand;
+
+    @FindBy(how = How.ID, using = "isFeatured")
+    private WebElement isFeatured;
 
     @FindBy(how = How.ID, using = "select-option-taxClassId")
     private WebElement tax;
 
+    @FindBy(how = How.CLASS_NAME, using = "ql-editor")
+    private WebElement description;
+
+    @FindBy(id = "shortDescription")
+    private WebElement shortDescription;
+
     @FindBy(xpath = "//button[@type='submit' and contains(text(),'Create')]")
-    WebElement createBtn;
+    private WebElement createBtn;
+
+    @FindBy(xpath = "//button[@type='button' and contains(text(),'Product Images')]")
+    private WebElement productImgNav;
+
+    @FindBy(how = How.ID, using = "main-thumbnail")
+    private WebElement thumbnail;
+
+    @FindBy(how = How.ID, using = "main-product-images")
+    private WebElement image;
 
     public ProductForm(WebDriver webDriver) {
         super(webDriver);

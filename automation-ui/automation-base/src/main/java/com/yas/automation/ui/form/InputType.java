@@ -6,7 +6,9 @@ import lombok.Getter;
 public enum InputType {
 
     TEXT("textService"),
-    DROPDOWN("dropdownService");
+    DROPDOWN("dropdownService"),
+    FILE("fileService"),
+    CHECKBOX("checkBoxService");
 
     private final String serviceName;
 

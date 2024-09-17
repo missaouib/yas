@@ -6,8 +6,12 @@ import com.yas.automation.ui.hook.WebDriverFactory;
 import com.yas.automation.ui.service.InputDelegateService;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.springframework.stereotype.Component;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.UUID;
 
 import static com.yas.automation.ui.util.WebElementUtil.getWebElementBy;
@@ -33,15 +37,28 @@ public class ProductPage extends BasePage {
         createProductLink.click();
     }
 
-    public void fillProductData() {
-        ProductForm productForm = new ProductForm(webDriverFactory.getChromeDriver());
-        inputDelegateService.setInputValue(InputType.TEXT, productForm.getName(), String.format("test-%s", UUID.randomUUID()));
-        inputDelegateService.setInputValue(InputType.TEXT, productForm.getPrice(), "10000");
+    public void fillGeneralProductData(ProductForm productForm) {
+        // General Information
+        inputDelegateService.setInputValue(InputType.TEXT, productForm.getName(), String.format("Dell-%s", UUID.randomUUID()));
+        inputDelegateService.setInputValue(InputType.TEXT, productForm.getPrice(), "100000000");
         inputDelegateService.setInputValue(InputType.TEXT, productForm.getSku(), UUID.randomUUID().toString());
+        inputDelegateService.setInputValue(InputType.TEXT, productForm.getGtin(), UUID.randomUUID().toString());
+        inputDelegateService.setInputValue(InputType.TEXT, productForm.getDescription(), UUID.randomUUID().toString());
+        inputDelegateService.setInputValue(InputType.TEXT, productForm.getShortDescription(), UUID.randomUUID().toString());
+        scrollTo(productForm.getIsFeatured());
+        inputDelegateService.setInputValue(InputType.CHECKBOX, productForm.getIsFeatured(), null);
         inputDelegateService.setInputValue(InputType.DROPDOWN, productForm.getBrand(), "Apple");
         inputDelegateService.setInputValue(InputType.DROPDOWN, productForm.getTax(), "Value Added Tax (VAT)");
-        this.scrollTo(productForm.getCreateBtn());
-        productForm.submitForm();
+    }
+
+    public void uploadProductImg(ProductForm productForm) {
+        scrollTo(productForm.getProductImgNav());
+        this.wait(Duration.ofSeconds(2));
+        productForm.getProductImgNav().click();
+
+        String filePath = "sampledata/images/dell.jpg";
+        inputDelegateService.setInputValue(InputType.FILE, productForm.getImage(), filePath);
+        inputDelegateService.setInputValue(InputType.FILE, productForm.getThumbnail(), filePath);
     }
 
 }
