@@ -2,6 +2,7 @@ package com.yas.automation.ui.hook;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Component;
 
 /**
@@ -28,7 +29,14 @@ public class WebDriverFactory {
      */
     public synchronized WebDriver getChromeDriver() {
         if (webDriver.get() == null) {
-            WebDriver webDriver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            if (System.getProperty("headless") != null
+                    && System.getProperty("headless").equals("true")) {
+                options.addArguments("--headless");
+                options.addArguments("--disable-gpu");
+            }
+
+            WebDriver webDriver = new ChromeDriver(options);
             webDriver.manage().window().maximize();
             this.webDriver.set(webDriver);
         }

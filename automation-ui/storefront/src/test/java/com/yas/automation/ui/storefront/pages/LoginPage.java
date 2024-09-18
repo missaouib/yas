@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import static com.yas.automation.ui.ultil.WebElementUtil.getWebElementBy;
 
-@Component
+@Component("storeFrontLoginPage")
 public class LoginPage {
 
     @Autowired

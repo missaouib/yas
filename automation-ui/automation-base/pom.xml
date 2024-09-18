@@ -7,34 +7,30 @@
         <groupId>com.yas</groupId>
         <artifactId>automation-ui</artifactId>
         <version>${revision}</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
-
     <artifactId>automation-base</artifactId>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.organization>nashtech-garage</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <!-- TODO: request create sonar key       -->
+        <sonar.projectKey>nashtech-garage_yas-automation-ui-automation_base</sonar.projectKey>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium-java.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>${cucumber-java.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -52,16 +48,7 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-spring</artifactId>
-            <version>${cucumber-spring.version}</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 

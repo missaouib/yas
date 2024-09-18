@@ -30,7 +30,7 @@ public class CategoryItemDetailPage extends BasePage {
     }
 
     public void clickObBasket() {
-        this.wait(Duration.ofSeconds(2));
+        this.wait(Duration.ofSeconds(5));
         WebElement btnBasket = getWebElementBy(webDriverFactory.getChromeDriver(), How.CLASS_NAME, "header-cart");
         btnBasket.click();
     }

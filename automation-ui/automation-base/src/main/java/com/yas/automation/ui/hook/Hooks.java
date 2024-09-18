@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * Cucumber hook managing cucumber test scenarios
  */
 public class Hooks {
+
     @Autowired
     private WebDriverFactory webDriverFactory;
 

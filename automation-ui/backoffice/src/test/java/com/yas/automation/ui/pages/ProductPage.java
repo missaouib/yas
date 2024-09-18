@@ -3,6 +3,7 @@ package com.yas.automation.ui.pages;
 import com.yas.automation.ui.form.InputType;
 import com.yas.automation.ui.form.ProductForm;
 import com.yas.automation.ui.hook.WebDriverFactory;
+import com.yas.automation.ui.page.BasePage;
 import com.yas.automation.ui.service.InputDelegateService;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.How;

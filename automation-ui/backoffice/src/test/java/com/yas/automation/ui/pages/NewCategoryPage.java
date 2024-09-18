@@ -1,6 +1,7 @@
 package com.yas.automation.ui.pages;
 
 import com.yas.automation.ui.hook.WebDriverFactory;
+import com.yas.automation.ui.page.BasePage;
 import com.yas.automation.ui.service.InputDelegateService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
