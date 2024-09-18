@@ -1,6 +1,6 @@
 Feature: Create Product
 
-  Scenario: Create Product successfully
+  Scenario: Create Product successfully (with general information, product images)
     Given I logged in successfully
     When I click to product on menu
     Then I should be in product list page
