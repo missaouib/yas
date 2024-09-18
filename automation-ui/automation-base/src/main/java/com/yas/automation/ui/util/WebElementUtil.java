@@ -24,4 +24,9 @@ public final class WebElementUtil {
         return driver.findElement(locator);
     }
 
+    public static boolean isCorrectUrl(WebDriver driver, String expectedUrl) {
+        String currentUrl = driver.getCurrentUrl();
+        return expectedUrl.equals(currentUrl);
+    }
+
 }
