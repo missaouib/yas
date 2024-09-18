@@ -1,9 +1,11 @@
-package com.yas.automation.ui.storefront.steps;
+package com.yas.automation.ui.steps;
+
+import static org.junit.Assert.assertTrue;
 
 import com.yas.automation.ui.configuration.StorefrontConfiguration;
 import com.yas.automation.ui.hook.WebDriverFactory;
-import com.yas.automation.ui.storefront.pages.HomePage;
-import com.yas.automation.ui.storefront.pages.LoginPage;
+import com.yas.automation.ui.pages.HomePage;
+import com.yas.automation.ui.pages.LoginPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -17,10 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
-import static org.junit.Assert.assertTrue;
-
 public class LoginSteps {
-
     private final HomePage homePage;
     private final LoginPage loginPage;
     private final WebDriverFactory webDriverFactory;

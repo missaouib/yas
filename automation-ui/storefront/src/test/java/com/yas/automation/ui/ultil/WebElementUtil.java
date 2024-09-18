@@ -8,10 +8,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public final class WebElementUtil {
 
-    private WebElementUtil() {}
+    private WebElementUtil() {
+    }
 
     public static WebElement getWebElementBy(WebDriver driver, How how, String identity) {
         return getWebElementBy(driver, how, identity, 30);
@@ -22,6 +24,12 @@ public final class WebElementUtil {
         WebDriverWait waitForEle = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
         waitForEle.until(ExpectedConditions.presenceOfElementLocated(locator));
         return driver.findElement(locator);
+    }
+
+    public static boolean isElementPresent(WebDriver driver, How how, String identity) {
+        By locator = how.buildBy(identity);
+        List<WebElement> elements = driver.findElements(locator);
+        return !elements.isEmpty();  // Returns true if element exists, false if not
     }
 
 }
