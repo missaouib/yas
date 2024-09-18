@@ -23,7 +23,7 @@ public class ProductPage extends BasePage {
     private final InputDelegateService inputDelegateService;
 
     public ProductPage(WebDriverFactory webDriverFactory, InputDelegateService inputDelegateService) {
-        super(webDriverFactory.getChromeDriver());
+        super(webDriverFactory);
         this.webDriverFactory = webDriverFactory;
         this.inputDelegateService = inputDelegateService;
     }

@@ -1,5 +1,6 @@
 package com.yas.automation.ui.pages;
 
+import com.yas.automation.ui.hook.WebDriverFactory;
 import lombok.Getter;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -23,12 +24,10 @@ import java.time.Duration;
 @Getter
 public class BasePage {
 
-    private final WebDriver webDriver;
-    private final WebDriverWait wait;
+    private final WebDriverFactory webDriverFactory;
 
-    public BasePage(WebDriver webDriver) {
-        this.webDriver = webDriver;
-        wait = new WebDriverWait(webDriver, Duration.ofSeconds(30));
+    public BasePage(WebDriverFactory webDriverFactory) {
+        this.webDriverFactory = webDriverFactory;
     }
 
     public void wait(Duration duration) {
@@ -40,15 +39,22 @@ public class BasePage {
     }
 
     public void scrollDown() {
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) webDriver;
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) getWebDriver();
         javascriptExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
         wait(Duration.ofSeconds(1));
     }
 
     public void scrollTo(WebElement webElement) {
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) webDriver;
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) getWebDriver();
         javascriptExecutor.executeScript("arguments[0].scrollIntoView(true);", webElement);
         wait(Duration.ofSeconds(1));
     }
 
+    public WebDriver getWebDriver() {
+        return webDriverFactory.getChromeDriver();
+    }
+
+    public WebDriverWait getWait() {
+        return new WebDriverWait(getWebDriver(), Duration.ofSeconds(30));
+    }
 }

@@ -12,7 +12,7 @@ public class CategoryPage extends BasePage {
 
     public CategoryPage(WebDriverFactory webDriverFactory,
                         InputDelegateService inputDelegateService) {
-        super(webDriverFactory.getChromeDriver());
+        super(webDriverFactory);
         this.webDriverFactory = webDriverFactory;
         this.inputDelegateService = inputDelegateService;
     }
