@@ -9,13 +9,11 @@ export async function getPromotions(request: PromotionListRequest) {
 }
 
 export async function createPromotion(promotion: PromotionDto) {
-  const url = `${baseUrl}`;
-  return (await apiClientService.post(url, JSON.stringify(promotion))).json();
+  return await apiClientService.post(baseUrl, JSON.stringify(promotion));
 }
 
 export async function updatePromotion(promotion: PromotionDto) {
-  const url = `${baseUrl}/${promotion.id}`;
-  return (await apiClientService.put(url, promotion)).json();
+  return await apiClientService.put(baseUrl, JSON.stringify(promotion));
 }
 
 export async function getPromotion(id: number) {
