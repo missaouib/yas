@@ -25,8 +25,14 @@ public class CategoryForm extends BaseForm {
     @FindBy(how = How.ID, using = "metaDescription")
     private WebElement metaDescription;
 
-    @FindBy(xpath = "//button[@type='submit' and contains(text(),'Create')]")
-    WebElement createBtn;
+    @FindBy(how = How.ID, using = "isPublish")
+    private WebElement isPublish;
+
+    @FindBy(how = How.ID, using = "category-image")
+    WebElement categoryImage;
+
+    @FindBy(xpath = "//button[@type='submit' and contains(text(),'Save')]")
+    WebElement saveBtn;
 
     public CategoryForm(WebDriver webDriver) {
         super(webDriver);
@@ -35,6 +41,6 @@ public class CategoryForm extends BaseForm {
 
     @Override
     public WebElement getSubmitBtn() {
-        return createBtn;
+        return saveBtn;
     }
 }

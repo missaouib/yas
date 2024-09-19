@@ -29,4 +29,8 @@ public final class WebElementUtil {
         return expectedUrl.equals(currentUrl);
     }
 
+    public static String createFieldText(String fieldName) {
+        return fieldName + System.currentTimeMillis();
+    }
+
 }
