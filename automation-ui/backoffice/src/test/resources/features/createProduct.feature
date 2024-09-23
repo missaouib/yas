@@ -8,3 +8,4 @@ Feature: Create Product
     Then I should be in create product page
     Given I fill necessary data for product and submit
     Then I should be in product list page
+    Then Created product shown in product list

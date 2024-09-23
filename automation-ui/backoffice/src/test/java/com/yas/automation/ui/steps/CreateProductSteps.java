@@ -8,17 +8,24 @@ import com.yas.automation.ui.service.AuthenticationService;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import lombok.AllArgsConstructor;
 
 import static org.junit.Assert.assertTrue;
 
-@AllArgsConstructor
 public class CreateProductSteps {
+
+    private String productName;
 
     private final HomePage homePage;
     private final ProductPage productPage;
     private final WebDriverFactory webDriverFactory;
     private final AuthenticationService authenticationService;
+
+    public CreateProductSteps(HomePage homePage, ProductPage productPage, WebDriverFactory webDriverFactory, AuthenticationService authenticationService) {
+        this.homePage = homePage;
+        this.productPage = productPage;
+        this.webDriverFactory = webDriverFactory;
+        this.authenticationService = authenticationService;
+    }
 
     @Given("I logged in successfully")
     public void i_should_be_logged_in_successfully() {
@@ -54,10 +61,24 @@ public class CreateProductSteps {
         // create product data
         productPage.fillGeneralProductData(productForm);
         productPage.uploadProductImg(productForm);
+        productPage.fillProductVariants(productForm);
+        productPage.fillProductAttribute(productForm);
+        productPage.fillCategoryMapping(productForm);
+        productPage.fillRelatedProduct(productForm);
+        productPage.fillCrossSellProduct(productForm);
+        productPage.fillSEOProduct(productForm);
 
         // submit form
         productPage.scrollTo(productForm.getSubmitBtn());
         productForm.submitForm();
+        productName = productForm.getName().getAttribute("value");
     }
 
+    @Then("Created product shown in product list")
+    public void createdProductShownInProductList() throws Exception {
+        assertTrue(
+                "New product must be shown on product list",
+                productPage.isNewProductShow(this.productName)
+        );
+    }
 }
